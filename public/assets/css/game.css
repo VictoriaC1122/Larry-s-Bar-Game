@@ -311,6 +311,22 @@
         40% { opacity: 1; }
     }
 
+	#option-container{
+		display:none;
+		position:absolute;
+		left:5%;
+		width:90%;
+		z-index:35;
+		text-align:center;
+	}
+
+	#option-container a{
+		display:inline-block;
+		width:100%;
+		margin:6px 0;
+		text-decoration:none;
+	}
+
 
 	#charcenter{	
 		display: inline-block;
@@ -417,5 +433,4 @@
           margin-right: auto;
         }
 }
-
 
