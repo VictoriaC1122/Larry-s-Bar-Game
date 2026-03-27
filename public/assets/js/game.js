@@ -51,6 +51,10 @@ function beginWait(sec, resumeFn) {
 
 function enableClick() {
     $('#storyframe').off('click.storyadvance').on('click.storyadvance', function() {
+        if (typeof clickStory === 'function') {
+            clickStory(null, 'storyframe');
+            return;
+        }
         tellStory("",false);
 	    if(bgmplaying) document.getElementById('musicplayer').play();
     });
