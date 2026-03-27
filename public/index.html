@@ -96,6 +96,8 @@
       var frame = $("#main_frame");
       var bgwidth = frame.width();
       var bgheight = frame.height();
+      var isNarrowPhone = false;
+      var storyOverlap = (25 / 130);
 
       if (!bgwidth) {
         return;
@@ -117,6 +119,7 @@
       ismobile = storywidth < 550 || window.matchMedia("(pointer: coarse)").matches;
       if (ismobile) {
         applyMobileProfile();
+        isNarrowPhone = bgwidth <= 430 && window.innerHeight >= 820;
       }
       story.css("height", storywidth * (130 / 620));
       if (storywidth < 650) {
@@ -130,6 +133,11 @@
       if (storywidth < 420 || storywidth < 380) {
         framemode = "down";
         story.css("opacity", 1);
+      }
+      if (isNarrowPhone) {
+        story.css("height", Math.max(bgheight * 0.285, 176));
+        story.css("opacity", 0.97);
+        storyOverlap = (14 / 130);
       }
 
       var storyheight = story.height();
@@ -148,9 +156,9 @@
           nametag.css("top", bgheight - nametagheight);
         }
       } else if (framemode === "down") {
-        story.css("top", bgheight - (25 / 130) * storyheight);
-        $("#main_frame").css("min-height", bgheight + storyheight - (25 / 130) * storyheight);
-        $("#fulltellframe").css("height", bgheight + storyheight - (25 / 130) * storyheight);
+        story.css("top", bgheight - storyOverlap * storyheight);
+        $("#main_frame").css("min-height", bgheight + storyheight - storyOverlap * storyheight);
+        $("#fulltellframe").css("height", bgheight + storyheight - storyOverlap * storyheight);
         if (!fulltellmode) {
           nametag.css("top", bgheight + nametageoffset - nametagheight);
         }
@@ -163,7 +171,7 @@
       }
 
       var optionheight = $("#option-container").height();
-      var optionoffset = (bgheight - optionheight) / 1.9;
+      var optionoffset = isNarrowPhone ? (bgheight - optionheight) / 1.55 : (bgheight - optionheight) / 1.9;
       $("#option-container").css("top", optionoffset + "px");
 
       var tell = $("#story");
@@ -174,14 +182,14 @@
         $("#charcenter").css("clip", "rect(0px," + bgwidth * 0.75 + "px," + (bgheight - 2) + "px,0px)");
         $("#charcenter").fadeIn(700);
       } else if (ismobile) {
-        var mobileCenterHeight = bgheight * 0.92;
-        var mobileSideHeight = bgheight * 0.88;
-        var mobileTop = bgheight * 0.04;
+        var mobileCenterHeight = isNarrowPhone ? bgheight * 0.78 : bgheight * 0.92;
+        var mobileSideHeight = isNarrowPhone ? bgheight * 0.72 : bgheight * 0.88;
+        var mobileTop = isNarrowPhone ? bgheight * 0.08 : bgheight * 0.04;
         $("#charcenter").css({ clip: "auto", height: mobileCenterHeight, left: "50%", top: mobileTop, transform: "translateX(-50%)" });
-        $("#charleft").css({ height: mobileSideHeight, left: "-16%", top: mobileTop });
-        $("#charright").css({ height: mobileSideHeight, left: "58%", top: mobileTop });
-        fulltell.css("margin", bgheight / 7.5);
-        $("#story").css({ margin: 14, "margin-top": 30 });
+        $("#charleft").css({ height: mobileSideHeight, left: isNarrowPhone ? "-24%" : "-16%", top: mobileTop });
+        $("#charright").css({ height: mobileSideHeight, left: isNarrowPhone ? "62%" : "58%", top: mobileTop });
+        fulltell.css("margin", isNarrowPhone ? bgheight / 9 : bgheight / 7.5);
+        $("#story").css({ margin: isNarrowPhone ? 12 : 14, "margin-top": isNarrowPhone ? 24 : 30 });
         fontsizebase = 12;
       } else {
         $("#charcenter").css({ clip: "auto", height: bgheight, left: "25%", top: "0", transform: "" });

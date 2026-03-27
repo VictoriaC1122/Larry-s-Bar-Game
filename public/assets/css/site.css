@@ -222,3 +222,58 @@ a {
     gap: 8px;
   }
 }
+
+@media (max-width: 430px) and (min-height: 820px) {
+  body {
+    padding:
+      max(6px, env(safe-area-inset-top))
+      6px
+      max(18px, env(safe-area-inset-bottom));
+  }
+
+  .game-shell {
+    padding: 8px;
+    border-radius: 16px;
+  }
+
+  .game-shell-top {
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .eyebrow {
+    margin-bottom: 6px;
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+
+  .game-shell-top h1 {
+    margin-bottom: 8px;
+    font-size: 26px;
+  }
+
+  .game-shell-top p {
+    font-size: 13px;
+    line-height: 1.45;
+  }
+
+  .controls {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .shell-btn {
+    min-height: 42px;
+    padding: 10px 8px;
+    font-size: 13px;
+  }
+
+  #music {
+    margin-top: 10px;
+  }
+
+  .game-footer {
+    margin-top: 10px;
+    padding-top: 10px;
+    font-size: 12px;
+  }
+}
