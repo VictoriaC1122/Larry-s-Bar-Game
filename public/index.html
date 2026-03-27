@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>賴瑞的調酒研究室</title>
+  <meta name="description" content="賴瑞是一名調酒師，玩家需要協助他在平凡生活中找到真愛。這是獨立部署版的《賴瑞的調酒研究室》。">
+  <meta property="og:title" content="賴瑞的調酒研究室">
+  <meta property="og:description" content="獨立網頁版戀愛互動遊戲。">
+  <meta property="og:image" content="assets/cover.png">
+  <link rel="icon" href="assets/cover.png">
+  <link rel="stylesheet" href="assets/css/game.css">
+  <link rel="stylesheet" href="assets/css/gamebtn.css">
+  <link rel="stylesheet" href="assets/css/site.css">
+  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+  <script src="assets/js/imagesloaded.pkgd.js"></script>
+  <script>
+    var firststage = "";
+    var test = false;
+    var gid = "95Do4vb0";
+    var uid = "";
+    var debug = "";
+    var gamename = "賴瑞的調酒研究室";
+    var ismobile = "";
+    var framemode = "up";
+    var gamecover = "95Do4vb0.png";
+    var bigcover = "";
+    var defaultfontsize = "16";
+    var defaultfontcolor = "#FFFFFF";
+    var nowfontsize = defaultfontsize;
+    var oldgame = "";
+    var musicplayer = "0";
+    var simple = false;
+    firststage = "start";
+    var name_color = "#FF5050";
+    loadset = 300;
+
+    function whichKey(event) {
+      if (event instanceof KeyboardEvent) {
+        tellStory(true);
+      }
+    }
+
+    function clickStory(event, id) {
+      if (event instanceof MouseEvent && id === "storyframe") {
+        tellStory(true);
+      }
+    }
+  </script>
+  <script src="assets/js/game.js"></script>
+  <script src="assets/js/loadxml.js"></script>
+  <script src="assets/js/paint.js"></script>
+  <script src="assets/js/utility.js"></script>
+  <script src="assets/js/cookies.js"></script>
+  <script>
+    document.onkeydown = whichKey;
+
+    var autotell = false;
+    var storytop = false;
+    var fontsizebase = 11.5;
+    var is1366 = false;
+    var nametageoffset = 0;
+    var storymargin = 0.05;
+    var storymargintop = 0.22;
+    var modifiedstorymargintop = 0.22;
+    var fulltellbgcolor = "#000000";
+    var tmpdelaytime = 30;
+
+    function toggleautotell() {
+      autotell = !autotell;
+      tellStory(true);
+      init();
+    }
+
+    function toggleskip() {
+      if (delaytime > 1) {
+        tmpdelaytime = delaytime;
+        autotell = true;
+        delaytime = 1;
+        sys("animation:off");
+        tellStory(true);
+        init();
+      } else {
+        autotell = false;
+        delaytime = tmpdelaytime;
+        if (!ismobile) {
+          sys("animation:on");
+        }
+        init();
+      }
+    }
+
+    function init() {
+      var bg = $("#bgimg");
+      var bgheight = bg.height();
+      var bgwidth = bg.width();
+      if ((bgheight / bgwidth) !== (38 / 62)) {
+        bg.css("height", bgwidth * (38 / 62));
+        $("#fulltellframe").css("height", bgwidth * (38 / 62));
+      }
+
+      $("#effectlayer").css({ height: bgwidth * (38 / 62) });
+      $("#effectlayer2").css({ height: bgwidth * (38 / 62) });
+      $("#effectlayer3").css({ height: bgwidth * (38 / 62) });
+      $("#review").css({ "max-height": $("#main_frame").height() });
+
+      var story = $("#storyframe");
+      modifiedstorymargintop = storymargintop;
+      var storywidth = story.width();
+      if (storywidth < 550) {
+        ismobile = true;
+      }
+      story.css("height", storywidth * (130 / 620));
+      if (storywidth < 650) {
+        story.css("height", storywidth / 5);
+      }
+      if (storywidth < 550) {
+        framemode = "down";
+        story.css("height", storywidth / 2.2);
+        story.css("opacity", 1);
+      }
+      if (storywidth < 420 || storywidth < 380) {
+        framemode = "down";
+        story.css("opacity", 1);
+      }
+
+      var storyheight = story.height();
+      story.css("background-size", bgwidth + "px " + storyheight + "px");
+
+      var nametag = $("#nametag");
+      var nametagheight = nametag.height();
+      if (fulltellmode) {
+        nametag.css("top", bgheight - nametagheight);
+      }
+
+      if (storytop) {
+        story.css("top", bgheight * storytop);
+        $("#main_frame").css("min-height", bgheight);
+        if (!fulltellmode) {
+          nametag.css("top", bgheight - nametagheight);
+        }
+      } else if (framemode === "down") {
+        story.css("top", bgheight - (25 / 130) * storyheight);
+        $("#main_frame").css("min-height", bgheight + storyheight - (25 / 130) * storyheight);
+        $("#fulltellframe").css("height", bgheight + storyheight - (25 / 130) * storyheight);
+        if (!fulltellmode) {
+          nametag.css("top", bgheight + nametageoffset - nametagheight);
+        }
+      } else if (framemode === "up") {
+        story.css("top", bgheight - storyheight);
+        $("#main_frame").css("min-height", bgheight);
+        if (!fulltellmode) {
+          nametag.css("top", bgheight - storyheight - nametagheight + nametageoffset + (25 / 130) * storyheight);
+        }
+      }
+
+      var optionheight = $("#option-container").height();
+      var optionoffset = (bgheight - optionheight) / 1.9;
+      $("#option-container").css("top", optionoffset + "px");
+
+      var tell = $("#story");
+      var fulltell = $("#fulltell");
+
+      if (closerc) {
+        $("#charcenter").css({ height: bgheight * 1.5, top: "-0%", left: "10%" });
+        $("#charcenter").css("clip", "rect(0px," + bgwidth * 0.75 + "px," + (bgheight - 2) + "px,0px)");
+        $("#charcenter").fadeIn(700);
+      } else if (ismobile) {
+        $("#charcenter").css({ clip: "auto", height: bgheight * 1.1, left: "17%", top: "-0%" });
+        $("#charleft").css({ height: bgheight * 1.1, left: "-10%", top: "-0%" });
+        $("#charright").css({ height: bgheight * 1.1, left: "40%", top: "-0%" });
+        fulltell.css("margin", bgheight / 6);
+        $("#story").css({ margin: 16, "margin-top": 36 });
+        fontsizebase = 12;
+      } else {
+        $("#charcenter").css({ clip: "auto", height: bgheight, left: "25%", top: "0" });
+        $("#charleft").css({ height: bgheight, top: "0" });
+        $("#charright").css({ height: bgheight, left: "50%", top: "0" });
+        fulltell.css("margin", bgheight / 3.5);
+      }
+
+      tell.css({
+        "margin-right": storywidth * 0.05 + "px",
+        "margin-left": storywidth * storymargin + "px",
+        "margin-top": storyheight * modifiedstorymargintop + "px",
+        "font-size": nowfontsize / fontsizebase + "em",
+        color: "rgba(" + hexToRgb(defaultfontcolor).r + "," + hexToRgb(defaultfontcolor).g + "," + hexToRgb(defaultfontcolor).b + ",0.88)"
+      });
+      fulltell.css({
+        "font-size": nowfontsize / fontsizebase + "em",
+        color: "rgba(255,255,255,0.66)"
+      });
+
+      $("#fulltellframe").css("background-color", "rgba(" + hexToRgb(fulltellbgcolor).r + "," + hexToRgb(fulltellbgcolor).g + "," + hexToRgb(fulltellbgcolor).b + ",0.66)");
+      $("#map").css({ height: bgheight, width: bgwidth });
+      $("#player").css({ height: bgheight, width: bgwidth });
+      $("#playbtn").text(autotell ? "自動中" : "自動播放");
+    }
+
+    $(window).on("resize", function() {
+      init();
+    });
+
+    $(document).ready(function() {
+      $("#sysprompt, #review, #item, #map, #game-functions, #game-savefile, #fulltellframe, #effectlayer, #effectlayer2, #effectlayer3").hide();
+      $("#showingcover").delay(0).fadeOut(1200);
+      importXML("data/game.xml");
+    });
+  </script>
+</head>
+<body>
+  <div class="page">
+    <section class="hero">
+      <div class="hero-card">
+        <span class="eyebrow">Larry's Bar Game</span>
+        <h1>賴瑞的調酒研究室</h1>
+        <p>這版已經整理成可獨立部署的網頁遊戲，不再依附 BASS 平台頁面。玩家可以直接在你的 GitHub Pages 網址進入遊戲、閱讀劇情、選擇分支，並使用瀏覽器本地快速存讀檔。</p>
+      </div>
+      <aside class="sidebar-card">
+        <img src="assets/cover.png" alt="賴瑞的調酒研究室封面">
+        <div class="sidebar-body">
+          <h2>遊戲資訊</h2>
+          <p>7 位女角、46 種結局，保留原作場景、角色與分支互動，改成更適合個人網站展示的獨立版本。</p>
+        </div>
+      </aside>
+    </section>
+
+    <section class="game-shell">
+      <div class="game-shell-top">
+        <div>
+          <h2>開始遊戲</h2>
+          <p>建議使用桌機或橫向手機體驗。點擊畫面或按鍵盤即可推進對話。</p>
+        </div>
+        <div class="controls">
+          <button class="shell-btn" onclick="save();">快速存檔</button>
+          <button class="shell-btn" onclick="load2();">快速讀取</button>
+          <button class="shell-btn" id="playbtn" onclick="toggleautotell();">自動播放</button>
+          <button class="shell-btn" onclick="toggleskip();">快速跳過</button>
+          <button class="shell-btn" onclick="nowfontsize=nowfontsize*1.15; init();">字體放大</button>
+          <button class="shell-btn" onclick="nowfontsize=nowfontsize*0.9; init();">字體縮小</button>
+        </div>
+      </div>
+
+      <div id="main_frame">
+        <img id="showingcover" src="assets/cover.png" alt="">
+        <div id="fulltellframe" onclick="tellStory(true);"><p id="fulltell" class="fulltell" style="text-align:left;"></p></div>
+        <div id="sysprompt"><p class="fulltell"></p></div>
+        <div id="review" onclick='$("#review").slideUp(900);'><p id="reviewtell" class="fulltell"></p></div>
+        <div id="map">
+          <div class="selecting" onclick="selectMap(1);"></div>
+          <div class="selecting" onclick="selectMap(2);"></div>
+          <div class="selecting" onclick="selectMap(3);"></div>
+          <div class="selecting" onclick="selectMap(4);"></div>
+          <div class="selecting" onclick="selectMap(5);"></div>
+          <div class="selecting" onclick="selectMap(6);"></div>
+          <div class="selecting" onclick="selectMap(7);"></div>
+          <div class="selecting" onclick="selectMap(8);"></div>
+          <div class="selecting" onclick="selectMap(9);"></div>
+          <div class="selecting" onclick="selectMap(10);"></div>
+          <div class="selecting" onclick="selectMap(11);"></div>
+          <div class="selecting" onclick="selectMap(12);"></div>
+          <div class="selecting" onclick="selectMap(13);"></div>
+          <div class="selecting" onclick="selectMap(14);"></div>
+          <div class="selecting" onclick="selectMap(15);"></div>
+          <div class="selecting" onclick="selectMap(16);"></div>
+        </div>
+        <p class="game-info" id="loading-msg"></p>
+        <img id="temp_bgimg" src="assets/transparent.png" alt="">
+        <img id="bgimg" src="assets/transparent.png" onload="init();" alt="">
+        <img id="effectlayer" src="assets/transparent.png" alt="">
+        <img id="effectlayer2" src="assets/transparent.png" alt="">
+        <img id="effectlayer3" src="assets/transparent.png" alt="">
+        <div id="char">
+          <img id="charcenter" alt="">
+          <img id="charleft" alt="">
+          <img id="charright" alt="">
+        </div>
+        <div id="item"><img id="itemimg" alt=""><p id="itemdesc" class="content-desc"></p></div>
+        <div id="option-container"></div>
+        <div id="nametag" class="nametag"></div>
+        <div id="storyframe" style="display:none; opacity:0.8;" onclick="clickStory(event, id);">
+          <p class="story" id="story" style="text-align:left;"></p>
+        </div>
+        <div id="player"></div>
+        <div id="game-functions" class="hidden-support"></div>
+        <div id="game-savefile" class="hidden-support"></div>
+      </div>
+
+      <div id="music" class="music">
+        <audio style="width:100%" id="musicplayer" autoplay controls loop><source src="" type="audio/mpeg">你的瀏覽器不支援 html5 音樂撥放</audio>
+      </div>
+
+      <div class="game-footer">
+        <div><strong>操作</strong> 點擊畫面、Enter 或空白鍵可推進劇情。</div>
+        <div><strong>存檔</strong> 使用目前瀏覽器儲存，換裝置不會同步。</div>
+      </div>
+    </section>
+
+    <div class="hidden-support">
+      <input type="hidden" id="sstage" value="">
+      <input type="hidden" id="sline" value="">
+      <input type="hidden" id="svars" value="">
+      <input type="hidden" id="autosave" value="no">
+      <input type="hidden" id="saveid" value="0">
+      <input type="hidden" id="n" value="">
+      <span id="dummyspan" class="dummyspan"></span>
+      <span id="dummyspan2" class="dummyspan2"></span>
+      <div class="storyb" id="storyb"></div>
+      <div class="load" id="load"></div>
+      <div class="load2" id="load2"></div>
+      <div class="storyc" id="storyc"></div>
+      <div class="dummy" id="dummy"></div>
+      <div id="control"></div>
+    </div>
+  </div>
+</body>
+</html>
