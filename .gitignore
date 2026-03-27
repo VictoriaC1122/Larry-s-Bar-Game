@@ -1,2 +1,4 @@
 tmp/
 .DS_Store
+asset_urls.txt
+asset_download_errors.txt

@@ -366,7 +366,7 @@ function paintBg(){
 	displayer[0]=layer[0];//分流用
 	
 	if(oldgame){
-				displayer[0]="https://bassadv.com/db/pic/room/"+layer[0].substring(layer[0].indexOf("room/")+5, layer[0].length);
+				displayer[0]="assets/media/db/pic/room/"+layer[0].substring(layer[0].indexOf("room/")+5, layer[0].length);
 	}
 
 					
@@ -443,6 +443,11 @@ var audio;
 var now_volume=0.5;
 var fadein_time=12000;
 lastmusic="";
+
+function getMidiFallbackSrc(src){
+	return src;
+}
+
 function loadMusic(){	
 //	if(uid=="lazi") alert(music[1]+":"+lastmusic);
 
@@ -453,10 +458,10 @@ function loadMusic(){
 				if(lastmusic!=""){
 					
 				}
-				var musicfilename=music[1].substr(18,8);
+				var midisrc = getMidiFallbackSrc(music[1]);
 
-				if( music[1].substr(26,4).toUpperCase()==".MID" && music[1].indexOf("https://bassadv.com/")!=-1){
-					document.all.music.innerHTML="<audio style=\"width:100%\" id='musicplayer'  controls loop><source src=\"https://bassadv.com/db/sound/midtomp3/"+musicfilename+".mp3\" type=\"audio/mpeg\">你的瀏覽器不支援html5音樂撥放</audio>";			
+				if(/\.mid$/i.test(music[1])){
+					document.all.music.innerHTML="<audio style=\"width:100%\" id='musicplayer'  controls loop><source src=\""+midisrc+"\" type=\"audio/mpeg\">你的瀏覽器不支援html5音樂撥放</audio>";			
 					audio=$("#musicplayer");
 				
 		audio.animate({volume: 0}, 0);
@@ -490,14 +495,12 @@ function loadMusicbyName(mname){
 				}
 
             musicfilename = musicfilename.replace("http://","https://");
-			if(musicfilename.indexOf("https://bassadv.com/db/sound/")!=-1){
+			if(musicfilename.indexOf("assets/media/db/sound/")!=-1){
 
-				var rawmusicfilename=musicfilename.substr(18,8);
-				
-				if( musicfilename.substr(26,4).toUpperCase()==".MID"){
-					document.all.music.innerHTML="<audio style=\"width:100%\" id='musicplayer' autoplay controls loop><source src=\"https://bassadv.com/db/sound/midtomp3/"+rawmusicfilename+".mp3\" type=\"audio/mpeg\">你的瀏覽器不支援html5音樂撥放</audio>";
+				if(/\.mid$/i.test(musicfilename)){
+					document.all.music.innerHTML="<audio style=\"width:100%\" id='musicplayer' autoplay controls loop><source src=\""+getMidiFallbackSrc(musicfilename)+"\" type=\"audio/mpeg\">你的瀏覽器不支援html5音樂撥放</audio>";
 				}else{
-					document.all.music.innerHTML="<audio style=\"width:100%\" id='musicplayer' autoplay controls loop><source src=\""+rawmusicfilename+"\" type=\"audio/mpeg\">你的瀏覽器不支援html5音樂撥放</audio>";	
+					document.all.music.innerHTML="<audio style=\"width:100%\" id='musicplayer' autoplay controls loop><source src=\""+musicfilename+"\" type=\"audio/mpeg\">你的瀏覽器不支援html5音樂撥放</audio>";	
 				}
 				
 			}else{
