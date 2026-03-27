@@ -162,64 +162,24 @@ a {
 
 @media (max-width: 900px) {
   body {
-    padding: 12px 12px 32px;
+    padding: 8px 8px 18px;
   }
 
   .game-shell {
-    border-radius: 22px;
-  }
-
-  .game-shell {
-    padding: 14px;
+    border-radius: 18px;
+    padding: 8px;
   }
 
   .game-shell-top {
-    align-items: stretch;
+    display: none;
   }
 
-  .game-shell-top > div {
-    width: 100%;
-  }
-
-  .game-shell-top h1 {
-    font-size: clamp(28px, 8vw, 42px);
-  }
-
-  .game-shell-top p {
-    font-size: 14px;
-    line-height: 1.65;
-  }
-
-  .controls {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    width: 100%;
-  }
-
-  .shell-btn {
-    width: 100%;
-    padding: 12px 10px;
-    font-size: 15px;
+  #music {
+    display: none;
   }
 
   .game-footer {
-    font-size: 13px;
-    gap: 10px;
-  }
-}
-
-@media (max-width: 560px) {
-  body {
-    padding: 8px 8px 24px;
-  }
-
-  .game-shell {
-    padding: 10px;
-    border-radius: 18px;
-  }
-
-  .controls {
-    gap: 8px;
+    display: none;
   }
 }
 
@@ -232,45 +192,7 @@ a {
   }
 
   .game-shell {
-    padding: 8px;
-    border-radius: 16px;
-  }
-
-  .game-shell-top {
-    display: none;
-  }
-
-  .eyebrow {
-    margin-bottom: 6px;
-    padding: 6px 10px;
-    font-size: 11px;
-  }
-
-  .game-shell-top h1 {
-    margin-bottom: 8px;
-    font-size: 26px;
-  }
-
-  .game-shell-top p {
-    font-size: 13px;
-    line-height: 1.45;
-  }
-
-  .controls {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .shell-btn {
-    min-height: 42px;
-    padding: 10px 8px;
-    font-size: 13px;
-  }
-
-  #music {
-    display: none;
-  }
-
-  .game-footer {
-    display: none;
+    padding: 6px;
+    border-radius: 14px;
   }
 }

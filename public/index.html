@@ -185,12 +185,12 @@
         $("#charcenter").css("clip", "rect(0px," + bgwidth * 0.75 + "px," + (bgheight - 2) + "px,0px)");
         $("#charcenter").fadeIn(700);
       } else if (ismobile) {
-        var mobileCenterHeight = isNarrowPhone ? bgheight * 0.64 : bgheight * 0.72;
-        var mobileSideHeight = isNarrowPhone ? bgheight * 0.58 : bgheight * 0.66;
-        var mobileTop = isNarrowPhone ? bgheight * 0.12 : bgheight * 0.06;
+        var mobileCenterHeight = isNarrowPhone ? bgheight * 0.74 : bgheight * 0.8;
+        var mobileSideHeight = isNarrowPhone ? bgheight * 0.66 : bgheight * 0.72;
+        var mobileTop = isNarrowPhone ? bgheight * 0.09 : bgheight * 0.05;
         $("#charcenter").css({ clip: "auto", height: mobileCenterHeight, left: "50%", top: mobileTop, transform: "translateX(-50%)" });
-        $("#charleft").css({ height: mobileSideHeight, left: isNarrowPhone ? "-18%" : "-10%", top: mobileTop });
-        $("#charright").css({ height: mobileSideHeight, left: isNarrowPhone ? "58%" : "52%", top: mobileTop });
+        $("#charleft").css({ height: mobileSideHeight, left: isNarrowPhone ? "-14%" : "-8%", top: mobileTop });
+        $("#charright").css({ height: mobileSideHeight, left: isNarrowPhone ? "54%" : "50%", top: mobileTop });
         fulltell.css("margin", isNarrowPhone ? bgheight / 8.5 : bgheight / 7.5);
         $("#story").css({ margin: isNarrowPhone ? 12 : 14, "margin-top": isNarrowPhone ? 22 : 26 });
         fontsizebase = 12;

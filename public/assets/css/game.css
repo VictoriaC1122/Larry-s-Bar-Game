@@ -454,6 +454,7 @@
 	#main_frame{
 		aspect-ratio: 62 / 38;
 		min-height: 220px;
+		border-radius: 14px;
 	}
 
 	#story{
@@ -478,7 +479,7 @@
 	#charcenter,
 	#charleft,
 	#charright{
-		max-width: 58%;
+		max-width: 62%;
 		width: auto;
 	}
 }
@@ -486,7 +487,7 @@
 @media (max-width: 430px) and (min-height: 820px) {
 	#main_frame{
 		aspect-ratio: 62 / 38;
-		border-radius: 16px;
+		border-radius: 12px;
 	}
 
 	#storyframe{
@@ -510,6 +511,6 @@
 	#charcenter,
 	#charleft,
 	#charright{
-		max-width: 56%;
+		max-width: 64%;
 	}
 }
