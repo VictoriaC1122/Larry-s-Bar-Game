@@ -25,7 +25,7 @@ html, body {
 }
 
 body {
-  padding: 32px 20px 56px;
+  padding: 16px 20px 40px;
 }
 
 a {
@@ -37,16 +37,6 @@ a {
   margin: 0 auto;
 }
 
-.hero {
-  display: grid;
-  grid-template-columns: minmax(0, 1.3fr) minmax(260px, 0.7fr);
-  gap: 24px;
-  align-items: stretch;
-  margin-bottom: 28px;
-}
-
-.hero-card,
-.sidebar-card,
 .game-shell {
   background: var(--panel);
   border: 1px solid var(--line);
@@ -54,14 +44,9 @@ a {
   backdrop-filter: blur(12px);
 }
 
-.hero-card {
-  padding: 32px;
-  border-radius: 28px;
-}
-
 .eyebrow {
   display: inline-block;
-  margin-bottom: 14px;
+  margin-bottom: 10px;
   padding: 8px 12px;
   border-radius: 999px;
   letter-spacing: 0.08em;
@@ -70,46 +55,18 @@ a {
   background: rgba(255, 255, 255, 0.08);
 }
 
-.hero-card h1 {
+.game-shell-top h1 {
   margin: 0 0 14px;
-  font-size: clamp(36px, 5vw, 64px);
+  font-size: clamp(34px, 5vw, 56px);
   line-height: 0.95;
 }
 
-.hero-card p {
+.game-shell-top p {
   margin: 0;
   max-width: 48rem;
   color: var(--muted);
   font-size: 16px;
   line-height: 1.8;
-}
-
-.sidebar-card {
-  border-radius: 28px;
-  overflow: hidden;
-}
-
-.sidebar-card img {
-  display: block;
-  width: 100%;
-  aspect-ratio: 3 / 4;
-  object-fit: cover;
-}
-
-.sidebar-body {
-  padding: 18px 20px 22px;
-}
-
-.sidebar-body h2 {
-  margin: 0 0 8px;
-  font-size: 18px;
-}
-
-.sidebar-body p {
-  margin: 0;
-  color: var(--muted);
-  line-height: 1.7;
-  font-size: 14px;
 }
 
 .game-shell {
@@ -129,12 +86,6 @@ a {
 .game-shell-top h2 {
   margin: 0;
   font-size: 22px;
-}
-
-.game-shell-top p {
-  margin: 4px 0 0;
-  color: var(--muted);
-  font-size: 14px;
 }
 
 .controls {
@@ -209,21 +160,11 @@ a {
 
 @media (max-width: 900px) {
   body {
-    padding: 18px 12px 40px;
+    padding: 12px 12px 32px;
   }
 
-  .hero {
-    grid-template-columns: 1fr;
-  }
-
-  .hero-card,
-  .sidebar-card,
   .game-shell {
     border-radius: 22px;
-  }
-
-  .hero-card {
-    padding: 24px;
   }
 
   .game-shell {

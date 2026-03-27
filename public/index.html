@@ -204,32 +204,26 @@
     $(document).ready(function() {
       $("#sysprompt, #review, #item, #map, #game-functions, #game-savefile, #fulltellframe, #effectlayer, #effectlayer2, #effectlayer3").hide();
       $("#showingcover").delay(0).fadeOut(1200);
+      setCookie(gid, "");
+      setCookie(gid + "s", "");
+      setCookie(gid + "n", "");
+      if (test) {
+        setDelay(0);
+      } else {
+        setDelay(20);
+      }
       importXML("data/game.xml");
     });
   </script>
 </head>
 <body>
   <div class="page">
-    <section class="hero">
-      <div class="hero-card">
-        <span class="eyebrow">Larry's Bar Game</span>
-        <h1>賴瑞的調酒研究室</h1>
-        <p>這版已經整理成可獨立部署的網頁遊戲，不再依附 BASS 平台頁面。玩家可以直接在你的 GitHub Pages 網址進入遊戲、閱讀劇情、選擇分支，並使用瀏覽器本地快速存讀檔。</p>
-      </div>
-      <aside class="sidebar-card">
-        <img src="assets/cover.png" alt="賴瑞的調酒研究室封面">
-        <div class="sidebar-body">
-          <h2>遊戲資訊</h2>
-          <p>7 位女角、46 種結局，保留原作場景、角色與分支互動，改成更適合個人網站展示的獨立版本。</p>
-        </div>
-      </aside>
-    </section>
-
     <section class="game-shell">
       <div class="game-shell-top">
         <div>
-          <h2>開始遊戲</h2>
-          <p>建議使用桌機或橫向手機體驗。點擊畫面或按鍵盤即可推進對話。</p>
+          <span class="eyebrow">Larry's Bar Game</span>
+          <h1>賴瑞的調酒研究室</h1>
+          <p>點擊遊戲畫面、Enter 或空白鍵即可開始並推進劇情。</p>
         </div>
         <div class="controls">
           <button class="shell-btn" onclick="save();">快速存檔</button>
