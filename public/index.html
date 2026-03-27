@@ -174,7 +174,8 @@
       }
 
       var optionheight = $("#option-container").height();
-      var optionoffset = isNarrowPhone ? (bgheight - optionheight) / 1.55 : (bgheight - optionheight) / 1.9;
+      var storyTop = parseFloat(story.css("top")) || 0;
+      var optionoffset = ismobile ? (storyTop + 12) : (bgheight - optionheight) / 1.9;
       $("#option-container").css("top", optionoffset + "px");
 
       var tell = $("#story");
@@ -264,6 +265,9 @@
       if (window.matchMedia("(max-width: 700px), (pointer: coarse)").matches) {
         ismobile = true;
         applyMobileProfile();
+        document.body.classList.add("mobile-device");
+      } else {
+        document.body.classList.remove("mobile-device");
       }
       $("#showingcover").delay(0).fadeOut(1200);
       setCookie(gid, "");

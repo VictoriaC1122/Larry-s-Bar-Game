@@ -160,6 +160,21 @@ a {
   display: none !important;
 }
 
+body.mobile-device {
+  padding: max(6px, env(safe-area-inset-top)) 6px max(12px, env(safe-area-inset-bottom));
+}
+
+body.mobile-device .game-shell {
+  padding: 6px;
+  border-radius: 14px;
+}
+
+body.mobile-device .game-shell-top,
+body.mobile-device #music,
+body.mobile-device .game-footer {
+  display: none !important;
+}
+
 @media (max-width: 900px) {
   body {
     padding: 8px 8px 18px;

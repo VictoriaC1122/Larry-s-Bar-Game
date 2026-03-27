@@ -343,6 +343,26 @@
 		touch-action: manipulation;
 	}
 
+	body.mobile-device #option-container{
+		left: 4%;
+		width: 92%;
+		z-index: 12;
+	}
+
+	body.mobile-device #option-container a{
+		margin: 4px 0;
+	}
+
+	body.mobile-device #option-container .option-btn{
+		height: 44px;
+		line-height: 44px;
+		font-size: 0.96em;
+	}
+
+	body.mobile-device #storyframe{
+		opacity: 0.96 !important;
+	}
+
 
 	#charcenter{	
 		display: inline-block;
