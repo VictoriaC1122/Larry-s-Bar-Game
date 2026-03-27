@@ -137,6 +137,9 @@
         framemode = "down";
         story.css("opacity", 1);
       }
+      if (ismobile) {
+        story.css("height", Math.max(bgheight * 0.34, story.height()));
+      }
       if (isNarrowPhone) {
         story.css("height", Math.max(bgheight * 0.285, 176));
         story.css("opacity", 0.97);
@@ -176,9 +179,10 @@
       var optionheight = $("#option-container").height();
       var storyTop = parseFloat(story.css("top")) || 0;
       var optionoffset = ismobile
-        ? (storyTop + Math.min(Math.max(storyheight * 0.78, 132), 172))
+        ? (storyTop + Math.min(Math.max(storyheight * 0.42, 82), 112))
         : (bgheight - optionheight) / 1.9;
       $("#option-container").css("top", optionoffset + "px");
+      $("#option-container").css("max-height", ismobile ? Math.max(storyheight - 94, 92) + "px" : "");
 
       var tell = $("#story");
       var fulltell = $("#fulltell");
@@ -290,12 +294,12 @@
   <div class="page">
     <section class="game-shell">
       <div class="game-shell-top">
-        <div>
+        <div class="intro-panel">
           <span class="eyebrow">Larry's Bar Game</span>
           <h1>賴瑞的調酒研究室</h1>
           <p>點擊遊戲畫面、Enter 或空白鍵即可開始並推進劇情。</p>
         </div>
-        <div class="controls">
+        <div class="controls controls-panel">
           <button class="shell-btn" onclick="save();">快速存檔</button>
           <button class="shell-btn" onclick="load2();">快速讀取</button>
           <button class="shell-btn" id="playbtn" onclick="toggleautotell();">自動播放</button>
