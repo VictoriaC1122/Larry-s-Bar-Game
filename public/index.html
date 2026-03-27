@@ -65,6 +65,7 @@
     var modifiedstorymargintop = 0.22;
     var fulltellbgcolor = "#000000";
     var tmpdelaytime = 30;
+    var initFrame = null;
 
     function toggleautotell() {
       autotell = !autotell;
@@ -91,17 +92,22 @@
     }
 
     function init() {
-      var bg = $("#bgimg");
-      var bgheight = bg.height();
-      var bgwidth = bg.width();
-      if ((bgheight / bgwidth) !== (38 / 62)) {
-        bg.css("height", bgwidth * (38 / 62));
-        $("#fulltellframe").css("height", bgwidth * (38 / 62));
+      var frame = $("#main_frame");
+      var bgwidth = frame.width();
+      var bgheight = frame.height();
+
+      if (!bgwidth) {
+        return;
+      }
+
+      if (!bgheight) {
+        bgheight = bgwidth * (38 / 62);
       }
 
       $("#effectlayer").css({ height: bgwidth * (38 / 62) });
       $("#effectlayer2").css({ height: bgwidth * (38 / 62) });
       $("#effectlayer3").css({ height: bgwidth * (38 / 62) });
+      $("#fulltellframe").css("height", bgheight);
       $("#review").css({ "max-height": $("#main_frame").height() });
 
       var story = $("#storyframe");
@@ -197,8 +203,19 @@
       $("#playbtn").text(autotell ? "自動中" : "自動播放");
     }
 
+    function scheduleInit() {
+      if (initFrame !== null) {
+        cancelAnimationFrame(initFrame);
+      }
+
+      initFrame = requestAnimationFrame(function() {
+        initFrame = null;
+        init();
+      });
+    }
+
     $(window).on("resize", function() {
-      init();
+      scheduleInit();
     });
 
     $(document).ready(function() {
@@ -261,7 +278,7 @@
         </div>
         <p class="game-info" id="loading-msg"></p>
         <img id="temp_bgimg" src="assets/transparent.png" alt="">
-        <img id="bgimg" src="assets/transparent.png" onload="init();" alt="">
+        <img id="bgimg" src="assets/transparent.png" alt="">
         <img id="effectlayer" src="assets/transparent.png" alt="">
         <img id="effectlayer2" src="assets/transparent.png" alt="">
         <img id="effectlayer3" src="assets/transparent.png" alt="">
