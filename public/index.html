@@ -179,6 +179,9 @@
         ? (storyTop + Math.min(Math.max(storyheight * 0.56, 108), 148))
         : (bgheight - optionheight) / 1.9;
       $("#option-container").css("top", optionoffset + "px");
+      if (ismobile) {
+        $("#option-container").hide().html("");
+      }
 
       var tell = $("#story");
       var fulltell = $("#fulltell");
@@ -229,6 +232,7 @@
 
       mobileProfileApplied = true;
       framemode = "down";
+      textoption = true;
       storymargin = 0.04;
       storymargintop = 0.18;
       modifiedstorymargintop = storymargintop;
