@@ -472,4 +472,11 @@
 		left: 0.8rem;
 		width: 5.5em;
 	}
+
+	#charcenter,
+	#charleft,
+	#charright{
+		max-width: 68%;
+		width: auto;
+	}
 }
