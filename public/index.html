@@ -176,12 +176,9 @@
       var optionheight = $("#option-container").height();
       var storyTop = parseFloat(story.css("top")) || 0;
       var optionoffset = ismobile
-        ? (storyTop + Math.min(Math.max(storyheight * 0.56, 108), 148))
+        ? (storyTop + Math.min(Math.max(storyheight * 0.78, 132), 172))
         : (bgheight - optionheight) / 1.9;
       $("#option-container").css("top", optionoffset + "px");
-      if (ismobile) {
-        $("#option-container").hide().html("");
-      }
 
       var tell = $("#story");
       var fulltell = $("#fulltell");
@@ -232,7 +229,7 @@
 
       mobileProfileApplied = true;
       framemode = "down";
-      textoption = true;
+      textoption = false;
       storymargin = 0.04;
       storymargintop = 0.18;
       modifiedstorymargintop = storymargintop;
