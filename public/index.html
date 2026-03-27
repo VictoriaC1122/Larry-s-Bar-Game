@@ -95,7 +95,8 @@
     function init() {
       var frame = $("#main_frame");
       var bgwidth = frame.width();
-      var bgheight = frame.height();
+      var sceneHeight = bgwidth * (38 / 62);
+      var bgheight = sceneHeight;
       var isNarrowPhone = false;
       var storyOverlap = (25 / 130);
 
@@ -103,13 +104,9 @@
         return;
       }
 
-      if (!bgheight) {
-        bgheight = bgwidth * (38 / 62);
-      }
-
-      $("#effectlayer").css({ height: bgwidth * (38 / 62) });
-      $("#effectlayer2").css({ height: bgwidth * (38 / 62) });
-      $("#effectlayer3").css({ height: bgwidth * (38 / 62) });
+      $("#effectlayer").css({ height: sceneHeight });
+      $("#effectlayer2").css({ height: sceneHeight });
+      $("#effectlayer3").css({ height: sceneHeight });
       $("#fulltellframe").css("height", bgheight);
       $("#review").css({ "max-height": $("#main_frame").height() });
 
