@@ -42,7 +42,7 @@
     }
 
     function clickStory(event, id) {
-      if (event instanceof MouseEvent && id === "storyframe") {
+      if (id === "storyframe") {
         tellStory(true);
       }
     }
@@ -66,6 +66,7 @@
     var fulltellbgcolor = "#000000";
     var tmpdelaytime = 30;
     var initFrame = null;
+    var mobileProfileApplied = false;
 
     function toggleautotell() {
       autotell = !autotell;
@@ -113,8 +114,9 @@
       var story = $("#storyframe");
       modifiedstorymargintop = storymargintop;
       var storywidth = story.width();
-      if (storywidth < 550) {
-        ismobile = true;
+      ismobile = storywidth < 550 || window.matchMedia("(pointer: coarse)").matches;
+      if (ismobile) {
+        applyMobileProfile();
       }
       story.css("height", storywidth * (130 / 620));
       if (storywidth < 650) {
@@ -203,6 +205,30 @@
       $("#playbtn").text(autotell ? "自動中" : "自動播放");
     }
 
+    function applyMobileProfile() {
+      if (mobileProfileApplied) {
+        return;
+      }
+
+      mobileProfileApplied = true;
+      framemode = "down";
+      storymargin = 0.04;
+      storymargintop = 0.18;
+      modifiedstorymargintop = storymargintop;
+      fontsizebase = 12.5;
+      defaultbgblur = 0;
+      changehidetime = 70;
+      changeshowtime = 110;
+      charfadeouttime = 90;
+      charnewtime = 120;
+      bgchangehidetime = 0;
+      bgchangeshowtime = 160;
+      optionshowtime = 120;
+      if (!autotell && delaytime > 18) {
+        setDelay(18);
+      }
+    }
+
     function scheduleInit() {
       if (initFrame !== null) {
         cancelAnimationFrame(initFrame);
@@ -221,6 +247,10 @@
     $(document).ready(function() {
       $("#sysprompt, #review, #item, #map, #game-functions, #game-savefile, #fulltellframe, #effectlayer, #effectlayer2, #effectlayer3").hide();
       storyhide = true;
+      if (window.matchMedia("(max-width: 700px), (pointer: coarse)").matches) {
+        ismobile = true;
+        applyMobileProfile();
+      }
       $("#showingcover").delay(0).fadeOut(1200);
       setCookie(gid, "");
       setCookie(gid + "s", "");

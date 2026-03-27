@@ -102,6 +102,8 @@ a {
   padding: 10px 14px;
   cursor: pointer;
   font-size: 14px;
+  min-height: 44px;
+  touch-action: manipulation;
 }
 
 .shell-btn:hover {
@@ -169,5 +171,54 @@ a {
 
   .game-shell {
     padding: 14px;
+  }
+
+  .game-shell-top {
+    align-items: stretch;
+  }
+
+  .game-shell-top > div {
+    width: 100%;
+  }
+
+  .game-shell-top h1 {
+    font-size: clamp(28px, 8vw, 42px);
+  }
+
+  .game-shell-top p {
+    font-size: 14px;
+    line-height: 1.65;
+  }
+
+  .controls {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
+  }
+
+  .shell-btn {
+    width: 100%;
+    padding: 12px 10px;
+    font-size: 15px;
+  }
+
+  .game-footer {
+    font-size: 13px;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 560px) {
+  body {
+    padding: 8px 8px 24px;
+  }
+
+  .game-shell {
+    padding: 10px;
+    border-radius: 18px;
+  }
+
+  .controls {
+    gap: 8px;
   }
 }

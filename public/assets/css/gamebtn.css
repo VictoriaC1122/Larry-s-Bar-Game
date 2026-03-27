@@ -27,12 +27,13 @@
 	font-size:1em;
 	font-weight:bold;
 	font-style:normal;
-	height:46px;
-	line-height:46px;
+	height:52px;
+	line-height:52px;
 	width:90%;
 	text-decoration:none;
 	text-align:center;
 	text-shadow:1px 1px 0px #000000;
+	touch-action: manipulation;
 }
 .option-btn:hover {
 	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #3d3a3d), color-stop(1, #000000) );
@@ -46,4 +47,15 @@
 	top:1px;
 }
 
+@media (max-width: 700px) {
+	.option-btn,.nametag{
+		font-size: 1.02em;
+	}
+
+	.option-btn{
+		height: 56px;
+		line-height: 56px;
+		width: 100%;
+	}
+}
 

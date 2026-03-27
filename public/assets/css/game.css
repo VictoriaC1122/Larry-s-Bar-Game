@@ -55,6 +55,7 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+	touch-action: manipulation;
 
 	}
 
@@ -146,6 +147,8 @@
 		top:-0px;
 		z-index:40;
 		width: 100%;
+		height:100%;
+		object-fit:cover;
 	}
 
 	#player{
@@ -286,6 +289,7 @@
         -moz-user-select: none;
         -ms-user-select: none;
         user-select: none;
+		touch-action: manipulation;
 	}
 	
 	.wait-indicator{
@@ -331,6 +335,10 @@
 		width:100%;
 		margin:6px 0;
 		text-decoration:none;
+	}
+
+	#option-container button{
+		touch-action: manipulation;
 	}
 
 
@@ -438,4 +446,30 @@
           margin-left: auto;
           margin-right: auto;
         }
+}
+
+@media (max-width: 700px) {
+	#main_frame{
+		aspect-ratio: 9 / 16;
+		min-height: 0;
+	}
+
+	#story{
+		font-size: 1.05em;
+		line-height: 1.55;
+	}
+
+	#fulltell{
+		line-height: 1.6;
+	}
+
+	#option-container{
+		left: 4%;
+		width: 92%;
+	}
+
+	#nametag{
+		left: 0.8rem;
+		width: 5.5em;
+	}
 }
