@@ -50,7 +50,7 @@ function beginWait(sec, resumeFn) {
 }
 
 function enableClick() {
-    $('#storyframe').on('click', function() {
+    $('#storyframe').off('click.storyadvance').on('click.storyadvance', function() {
         tellStory("",false);
 	    if(bgmplaying) document.getElementById('musicplayer').play();
     });
@@ -58,7 +58,7 @@ function enableClick() {
 }
 
 function disableClick() {
-	$('#storyframe').on('click', function() {});
+	$('#storyframe').off('click.storyadvance');
 	document.onkeydown = function() {};
 }
 

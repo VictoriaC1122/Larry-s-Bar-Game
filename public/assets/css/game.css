@@ -452,8 +452,8 @@
 
 @media (max-width: 700px) {
 	#main_frame{
-		aspect-ratio: 9 / 16;
-		min-height: 0;
+		aspect-ratio: 62 / 38;
+		min-height: 220px;
 	}
 
 	#story{
@@ -478,28 +478,28 @@
 	#charcenter,
 	#charleft,
 	#charright{
-		max-width: 68%;
+		max-width: 58%;
 		width: auto;
 	}
 }
 
 @media (max-width: 430px) and (min-height: 820px) {
 	#main_frame{
-		aspect-ratio: 402 / 874;
-		border-radius: 20px;
+		aspect-ratio: 62 / 38;
+		border-radius: 16px;
 	}
 
 	#storyframe{
-		border-top: none;
-		border-radius: 28px 28px 0 0;
+		border-top: 1px solid rgba(255,255,255,0.08);
+		border-radius: 0;
 		background:
-			linear-gradient(180deg, rgba(6, 4, 4, 0.18), rgba(6, 4, 4, 0.88)),
-			linear-gradient(90deg, rgba(24, 14, 12, 0.92), rgba(43, 25, 21, 0.8));
+			linear-gradient(180deg, rgba(6, 4, 4, 0.08), rgba(6, 4, 4, 0.78)),
+			linear-gradient(90deg, rgba(24, 14, 12, 0.9), rgba(43, 25, 21, 0.72));
 	}
 
 	#story{
-		font-size: 1.02em;
-		line-height: 1.58;
+		font-size: 0.98em;
+		line-height: 1.52;
 	}
 
 	#option-container{
@@ -510,6 +510,6 @@
 	#charcenter,
 	#charleft,
 	#charright{
-		max-width: 74%;
+		max-width: 56%;
 	}
 }

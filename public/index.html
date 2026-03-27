@@ -119,7 +119,7 @@
       ismobile = storywidth < 550 || window.matchMedia("(pointer: coarse)").matches;
       if (ismobile) {
         applyMobileProfile();
-        isNarrowPhone = bgwidth <= 430 && window.innerHeight >= 820;
+        isNarrowPhone = bgwidth <= 430 && window.innerHeight >= 820 && bgheight > bgwidth;
       }
       story.css("height", storywidth * (130 / 620));
       if (storywidth < 650) {
@@ -182,14 +182,14 @@
         $("#charcenter").css("clip", "rect(0px," + bgwidth * 0.75 + "px," + (bgheight - 2) + "px,0px)");
         $("#charcenter").fadeIn(700);
       } else if (ismobile) {
-        var mobileCenterHeight = isNarrowPhone ? bgheight * 0.78 : bgheight * 0.92;
-        var mobileSideHeight = isNarrowPhone ? bgheight * 0.72 : bgheight * 0.88;
-        var mobileTop = isNarrowPhone ? bgheight * 0.08 : bgheight * 0.04;
+        var mobileCenterHeight = isNarrowPhone ? bgheight * 0.64 : bgheight * 0.72;
+        var mobileSideHeight = isNarrowPhone ? bgheight * 0.58 : bgheight * 0.66;
+        var mobileTop = isNarrowPhone ? bgheight * 0.12 : bgheight * 0.06;
         $("#charcenter").css({ clip: "auto", height: mobileCenterHeight, left: "50%", top: mobileTop, transform: "translateX(-50%)" });
-        $("#charleft").css({ height: mobileSideHeight, left: isNarrowPhone ? "-24%" : "-16%", top: mobileTop });
-        $("#charright").css({ height: mobileSideHeight, left: isNarrowPhone ? "62%" : "58%", top: mobileTop });
-        fulltell.css("margin", isNarrowPhone ? bgheight / 9 : bgheight / 7.5);
-        $("#story").css({ margin: isNarrowPhone ? 12 : 14, "margin-top": isNarrowPhone ? 24 : 30 });
+        $("#charleft").css({ height: mobileSideHeight, left: isNarrowPhone ? "-18%" : "-10%", top: mobileTop });
+        $("#charright").css({ height: mobileSideHeight, left: isNarrowPhone ? "58%" : "52%", top: mobileTop });
+        fulltell.css("margin", isNarrowPhone ? bgheight / 8.5 : bgheight / 7.5);
+        $("#story").css({ margin: isNarrowPhone ? 12 : 14, "margin-top": isNarrowPhone ? 22 : 26 });
         fontsizebase = 12;
       } else {
         $("#charcenter").css({ clip: "auto", height: bgheight, left: "25%", top: "0", transform: "" });
@@ -331,7 +331,7 @@
         <div id="item"><img id="itemimg" alt=""><p id="itemdesc" class="content-desc"></p></div>
         <div id="option-container"></div>
         <div id="nametag" class="nametag"></div>
-        <div id="storyframe" style="display:none; opacity:0.8;" onclick="clickStory(event, id);">
+        <div id="storyframe" style="display:none; opacity:0.8;">
           <p class="story" id="story" style="text-align:left;"></p>
         </div>
         <div id="player"></div>
