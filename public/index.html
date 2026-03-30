@@ -177,12 +177,17 @@
       }
 
       var optionheight = $("#option-container").height();
-      var storyTop = parseFloat(story.css("top")) || 0;
-      var optionoffset = ismobile
-        ? (storyTop + Math.min(Math.max(storyheight * 0.42, 82), 112))
-        : (bgheight - optionheight) / 1.9;
-      $("#option-container").css("top", optionoffset + "px");
-      $("#option-container").css("max-height", ismobile ? Math.max(storyheight - 94, 92) + "px" : "");
+      if (ismobile) {
+        $("#option-container").css("top", "");
+        $("#option-container").css("bottom", "14px");
+        $("#option-container").css("max-height", Math.max(storyheight - 72, 96) + "px");
+      } else {
+        var storyTop = parseFloat(story.css("top")) || 0;
+        var optionoffset = (bgheight - optionheight) / 1.9;
+        $("#option-container").css("bottom", "");
+        $("#option-container").css("top", optionoffset + "px");
+        $("#option-container").css("max-height", "");
+      }
 
       var tell = $("#story");
       var fulltell = $("#fulltell");

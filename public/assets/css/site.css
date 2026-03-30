@@ -164,6 +164,10 @@ body.mobile-device {
   padding: max(6px, env(safe-area-inset-top)) 6px max(12px, env(safe-area-inset-bottom));
 }
 
+body.mobile-device .page {
+  width: min(430px, 100%);
+}
+
 body.mobile-device .game-shell {
   display: flex;
   flex-direction: column;

@@ -349,6 +349,8 @@
 		z-index: 18;
 		overflow-y: auto;
 		padding-right: 2px;
+		top: auto !important;
+		bottom: 14px;
 	}
 
 	body.mobile-device #option-container a{
