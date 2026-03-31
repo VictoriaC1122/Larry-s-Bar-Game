@@ -219,23 +219,6 @@ body.mobile-device .shell-btn {
   background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
 }
 
-@media (max-width: 900px) {
-  body {
-    padding: 8px 8px 18px;
-  }
-
-  .game-shell {
-    border-radius: 18px;
-    padding: 8px;
-  }
-
-  body:not(.mobile-device) .game-shell-top,
-  body:not(.mobile-device) #music,
-  body:not(.mobile-device) .game-footer {
-    display: none;
-  }
-}
-
 @media (max-width: 430px) and (min-height: 820px) {
   body {
     padding:
